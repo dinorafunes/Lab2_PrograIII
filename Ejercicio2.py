@@ -1,41 +1,47 @@
-
-
-class Perro:
-    def __init__(self, nombre, raza, edad, peso, color, dueño, enfermedades_anteriores, sexo):
+class Articulo:
+    nombre = ""
+    marca = ""
+    precio_compra = 0.0
+    precio_venta = 0.0
+    
+   
+    def __init__(self, nombre, marca, precio_compra):
         self.nombre = nombre
-        self.raza = raza
-        self.edad = edad
-        self.peso = peso
-        self.color = color
-        self.nombre_dueño = dueño
-        self.enfermedades_anteriores = enfermedades_anteriores
-        self.sexo = sexo
-        self.estado = "NO ATENDIDO"
-        self.tamano = "Perro Grande" if peso >= 10 else "Perro Pequeño"
+        self.marca = marca
+        self.precio_compra = precio_compra
+        self.calcular_precio_venta()
 
-    def registrar(self):
-        self.estado = "ATENDIDO"
-        self.mostrar_informacion()
+    def calcular_precio_venta(self):
+        self.precio_venta = self.precio_compra * 1.30
+    
+    
+    def mostrar_datos(self):
+        print("Nombre:", self.nombre)
+        print("Marca:", self.marca)
+        print("Precio de Compra: $", self.precio_compra)
+        print("Precio de Venta: $", round(self.precio_venta, 2))
+        print("___________________________")
 
-    def mostrar_informacion(self):
-        print(f"Nombre: {self.nombre}")
-        print(f"Raza: {self.raza}")
-        print(f"Edad: {self.edad} años")
-        print(f"Peso: {self.peso} kg")
-        print(f"Color: {self.color}")
-        print(f"Dirección del Dueño: {self.enfermedades_anteriores}")
-        print(f"Teléfono del Dueño: {self.sexo}")
-        print(f"Estado: {self.estado}")
-        print(f"Tamaño: {self.tamano}")
 
-nombre = input("Nombre del perro: ")
-raza = input("Raza: ")
-edad = int(input("Edad: "))
-peso = float(input("Peso (en kg): "))
-color = input("Color: ")
-dueño = input("Nombre del dueño: ")
-enfermedades_anteriores = input("Enfermedades anteriores: ")
-sexo = input("Sexo de la mascota: ")
-print("________________________________")
-perro = Perro (nombre, raza, edad, peso, color, dueño, enfermedades_anteriores, sexo)
-perro.registrar()
+class Cuaderno(Articulo):
+    def __init__(self, hojas, precio_compra):
+        super().__init__(f"Cuaderno de {hojas} hojas", "HOJITAS", precio_compra)
+        self.hojas = hojas
+
+
+class Lapiz(Articulo):
+    def __init__(self, tipo, precio_compra):
+        super().__init__(f"Lápiz de {tipo}", "RAYAS", precio_compra)
+        self.tipo = tipo
+
+
+cuaderno1 = Cuaderno(50, 2)
+cuaderno2 = Cuaderno(100, 3)
+lapiz1 = Lapiz("grafito", 0.10)
+lapiz2 = Lapiz("colores", 1)
+
+
+cuaderno1.mostrar_datos()
+cuaderno2.mostrar_datos()
+lapiz1.mostrar_datos()
+lapiz2.mostrar_datos()
